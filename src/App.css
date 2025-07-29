@@ -1,0 +1,285 @@
+/* App container */
+.app {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  background-image: url(assets/candyworld.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  position: relative;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+/* Title styling */
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0 16px;
+  margin-bottom: 40px;
+  font-size: clamp(1.4rem, 6vw, 2.5rem);
+  font-weight: bold;
+  color: #530606;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
+}
+
+/* Path map container */
+.map {
+  position: relative;
+  width: 100%;
+  height: 2200px; /* or more based on your levels */
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* SVG dashed curved path */
+.path {
+  position: absolute;
+  width: 100%;
+  height: 2000px; /* make sure this is updated */
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+/* Bubble row layout */
+.level {
+  position: relative;
+  width: 100%;
+  display: flex;
+  margin: 70px 0;
+  z-index: 1;
+}
+.level-left {
+  justify-content: flex-start;
+  padding-left: 30px;
+}
+.level-right {
+  justify-content: flex-end;
+  padding-right: 30px;
+}
+
+/* Bubble (circle) style */
+.circle {
+  width: 100px;
+  height: 100px;
+  background-color: #e00978;
+  border: 4px solid #f06292;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+  z-index: 2;
+  cursor: pointer;
+  animation: bounce 2s infinite;
+}
+
+.circle:hover {
+  transform: scale(1.1);
+}
+
+.circle.locked {
+  background-color: #eee;
+  border-color: #ccc;
+  color: #aaa;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Service label text inside circle */
+.label {
+  font-size: 0.75rem;
+  margin-top: 4px;
+  color: #fff;
+  text-align: center;
+  max-width: 80px;
+}
+
+/* Status button */
+.status-btn {
+  margin-top: 6px;
+  font-size: 0.65rem;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.status-btn.start {
+  background-color: #4caf50;
+  color: white;
+}
+.status-btn.in-progress {
+  background-color: #ff9800;
+  color: white;
+  cursor: default;
+}
+.status-btn.in-queue {
+  background-color: #c0c0c0;
+  color: #555;
+  cursor: not-allowed;
+}
+.status-btn.completed {
+  background-color: #2196f3;
+  color: white;
+  cursor: default;
+}
+
+/* Popup info box */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.popup-box {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  width: 300px;
+  text-align: left;
+  font-family: sans-serif;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  animation: popupFade 0.3s ease-in-out;
+}
+
+.popup-box h2 {
+  margin-top: 0;
+  color: #d81b60;
+}
+
+.popup-box p {
+  margin: 8px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.close-btn {
+  margin-top: 15px;
+  background-color: #d81b89;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  width: 100%;
+}
+
+@keyframes popupFade {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .circle {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+@media (max-width: 768px) {
+  .circle {
+    width: 80px;
+    height: 80px;
+  }
+  .map {
+    height: 1000px;
+  }
+}
+
+@media (max-width: 500px) {
+  .circle {
+    width: 65px;
+    height: 65px;
+    font-size: 18px;
+  }
+  .label {
+    font-size: 10px;
+  }
+  .status-btn {
+    font-size: 10px;
+    padding: 2px 5px;
+  }
+  .popup-box {
+    width: 90%;
+    padding: 16px;
+  }
+  .map {
+    height: 1100px;
+  }
+}
+
+@media (max-width: 360px) {
+  .circle {
+    width: 55px;
+    height: 55px;
+    font-size: 16px;
+  }
+  .status-btn {
+    font-size: 9px;
+    padding: 2px 4px;
+  }
+  .title {
+    font-size: 1.2rem;
+  }
+}
+@media (max-width: 600px) {
+  /* .app {
+    background-image: url('./assets/mobileview.png');
+  background-size: 100% 100%; 
+  background-repeat: no-repeat;
+  background-position: center; 
+  background-attachment: fixed;
+  min-height: 100vh;
+  } */
+  .app {
+    background: linear-gradient(to bottom, #b67a92, #3a053a);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 554px;
+    max-height: 554px;
+    background-attachment: scroll;
+    padding: 10px;
+    background-image: url('./assets/mobileview2.jpeg');
+    background-position: center center;
+  }
+}

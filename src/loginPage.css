@@ -1,0 +1,154 @@
+.login-container {
+  height: 100vh;
+  background: linear-gradient(to bottom, #b67a92, #3a053a);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: 'Comic Sans MS', cursive;
+  padding: 20px;
+  position: relative;
+}
+.login-box {
+  background: rgb(194, 110, 145);
+
+  border-radius: 20px;
+  padding: 30px 24px;
+  box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+  text-align: center;
+  animation: slideIn 0.6s ease-out;
+  position: relative;
+  z-index: 2;
+}
+
+.login-title {
+  font-size: 2.2rem;
+  color: #e91e63;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 2px #ff69b4;
+}
+
+.login-title span {
+  color: #4caf50;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.login-form input {
+  padding: 12px;
+  border-radius: 10px;
+  width: 200px;
+  border: 2px solid #f06292;
+  outline: none;
+  font-size: 1rem;
+  transition: 0.2s;
+}
+
+.login-form input:focus {
+  border-color: #ec407a;
+  box-shadow: 0 0 0 2px rgba(255, 64, 129, 0.2);
+}
+
+.login-form button {
+  background-color: #ec407a;
+  color: white;
+  font-weight: bold;
+  width: 150px;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+   
+  transition: background 0.3s ease;
+  font-size: 1rem;
+}
+
+.login-form button:hover {
+  background-color: #d81b60;
+}
+
+/* Floating images */
+.login-decor {
+  position: absolute;
+  width: 60px;
+  animation: float 3s ease-in-out infinite;
+  opacity: 0.85;
+}
+
+.heart {
+  top: 10%;
+  left: 15%;
+}
+.lollipop {
+  bottom: 10%;
+  right: 10%;
+}
+.tree {
+  bottom: 0;
+  left: 5%;
+  width: 70px;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .login-box {
+    width: 45px;
+    padding: 20px;
+  }
+
+  .login-decor {
+    width: 45px;
+  }
+  .login-title{
+    font-size: 20px;
+  }
+
+   .login-form input {
+  padding: 6px;
+  width: 180px;
+  border-radius: 5px;
+  border: 2px solid #f06292;
+  outline: none;
+  font-size: 0.8rem;
+  transition: 0.2s;
+}
+
+
+.login-form button {
+  background-color: #ec407a;
+  color: white;
+  font-weight: bold;
+  padding: 8px;
+  width: 150px;
+  border: none;
+  border-radius: 4.5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-size: 0.8rem;
+}
+}
