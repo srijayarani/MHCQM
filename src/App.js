@@ -68,6 +68,35 @@ function App() {
   const [insertPatient, { isLoading: isInsertLoading }] = useInsertPatientMutation();
   const [toast, setToast] = useState(null); // { type: 'success'|'error', message: string }
 
+  // Map service names to emojis (extend as needed)
+  const getServiceEmoji = (service) => {
+    const key = String(service || '').toUpperCase();
+    switch (key) {
+      case 'ECG': return '🩺';
+      case 'ECHO': return '💊';
+      case 'SCAN': return '🧬';
+      case 'MRI': return '🧪';
+      case 'TMT': return '❤️';
+      case 'LFT': return '🧠';
+      case 'LIPID': return '🩻';
+      case 'CBC': return '💉';
+      case 'CONSULT': return '👩‍⚕️';
+      default: return '🧪';
+    }
+  };
+
+  // Build dynamic levels from API; fallback to static when data unavailable
+  const computedLevels = Array.isArray(patients) && patients.length > 0
+    ? patients.map((p) => ({
+        emoji: getServiceEmoji(p.service),
+        service: p.service,
+        room: p.roomNo,
+        duration: `${p.duration_Min} min`,
+        uhid: p.uhid,
+        name: p.name
+      }))
+    : patientLevels; // fallback so UI still renders when API is loading/empty
+
   // Helper to show timed toasts
   const showToast = (type, message) => {
     setToast({ type, message });
@@ -165,7 +194,7 @@ function App() {
           />
         </svg>
 
-        {patientLevels.map((lvl, i) => {
+        {computedLevels.map((lvl, i) => {
           const status = getStatus(i);
           const isUnlocked = i <= unlockedLevel;
 
